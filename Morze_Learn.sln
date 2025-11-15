@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morze_Learn", "Morze_Learn\Morze_Learn.csproj", "{8654A37B-D7CD-43B9-A16C-72A5B516439D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8654A37B-D7CD-43B9-A16C-72A5B516439D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8654A37B-D7CD-43B9-A16C-72A5B516439D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8654A37B-D7CD-43B9-A16C-72A5B516439D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8654A37B-D7CD-43B9-A16C-72A5B516439D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {657EB14F-9A88-4D7A-B1C9-A9BB153728ED}
+	EndGlobalSection
+EndGlobal
