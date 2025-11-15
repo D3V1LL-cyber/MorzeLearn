@@ -1,0 +1,10 @@
+C:\П-40\Morze_Learn\Morze_Learn\bin\Debug\Morze_Learn.exe.config
+C:\П-40\Morze_Learn\Morze_Learn\bin\Debug\Morze_Learn.exe
+C:\П-40\Morze_Learn\Morze_Learn\bin\Debug\Morze_Learn.pdb
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.csproj.AssemblyReference.cache
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.Form1.resources
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.Properties.Resources.resources
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.csproj.GenerateResource.cache
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.csproj.CoreCompileInputs.cache
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.exe
+C:\П-40\Morze_Learn\Morze_Learn\obj\Debug\Morze_Learn.pdb
