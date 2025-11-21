@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using YourNamespace;
 
 namespace Morze_Learn
 {
@@ -58,6 +59,7 @@ namespace Morze_Learn
             this._pictureBoxSymbolImage = new System.Windows.Forms.PictureBox();
             this._buttonPlaySound = new System.Windows.Forms.Button();
             this._labelStatusBar = new System.Windows.Forms.Label();
+            this._buttonOpenMorzeTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._dataGridViewSymbolsTable)).BeginInit();
             this._panelSymbolDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxSymbolImage)).BeginInit();
@@ -81,9 +83,9 @@ namespace Morze_Learn
             this._textBoxSearch.Size = new System.Drawing.Size(200, 23);
             this._textBoxSearch.TabIndex = 1;
             this._textBoxSearch.Text = "Поиск символа...";
+            this._textBoxSearch.TextChanged += new System.EventHandler(this.TextBoxSearch_TextChanged);
             this._textBoxSearch.Enter += new System.EventHandler(this.TextBoxSearch_Enter);
             this._textBoxSearch.Leave += new System.EventHandler(this.TextBoxSearch_Leave);
-            this._textBoxSearch.TextChanged += new System.EventHandler(this.TextBoxSearch_TextChanged);
             // 
             // _comboBoxCategoryFilter
             // 
@@ -246,10 +248,24 @@ namespace Morze_Learn
             this._labelStatusBar.TabIndex = 6;
             this._labelStatusBar.Text = "Приложение готово к работе. Выберите символ для изучения.";
             // 
+            // _buttonOpenMorzeTest
+            // 
+            this._buttonOpenMorzeTest.BackColor = System.Drawing.Color.Indigo;
+            this._buttonOpenMorzeTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._buttonOpenMorzeTest.ForeColor = System.Drawing.Color.White;
+            this._buttonOpenMorzeTest.Location = new System.Drawing.Point(691, 12);
+            this._buttonOpenMorzeTest.Name = "_buttonOpenMorzeTest";
+            this._buttonOpenMorzeTest.Size = new System.Drawing.Size(190, 73);
+            this._buttonOpenMorzeTest.TabIndex = 7;
+            this._buttonOpenMorzeTest.Text = "Тесты по Морзе";
+            this._buttonOpenMorzeTest.UseVisualStyleBackColor = false;
+            this._buttonOpenMorzeTest.Click += new System.EventHandler(this._buttonOpenMorzeTest_Click);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(893, 561);
+            this.Controls.Add(this._buttonOpenMorzeTest);
             this.Controls.Add(this._labelApplicationTitle);
             this.Controls.Add(this._textBoxSearch);
             this.Controls.Add(this._comboBoxCategoryFilter);
@@ -266,6 +282,13 @@ namespace Morze_Learn
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxSymbolImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void _buttonOpenMorzeTest_Click(object sender, EventArgs e)
+        {
+            var formTestMorze = new FormTestMorze();
+            formTestMorze.ShowDialog(); // открывает модально
         }
 
         private void InitializeApplication()

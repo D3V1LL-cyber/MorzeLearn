@@ -26,6 +26,8 @@
             this.Text = "Изучение Азбуки Морзе";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button _buttonOpenMorzeTest;
     }
 }
 
