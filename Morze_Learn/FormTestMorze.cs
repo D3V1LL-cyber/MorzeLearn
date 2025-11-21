@@ -9,6 +9,8 @@ namespace YourNamespace
         private List<Question> _questions;
         private int _currentQuestionIndex = 0;
         private int _score = 0;
+        private int _questionsAsked = 0; // счетчик заданных вопросов
+        private const int MaxQuestions = 10; // задаем лимит вопросов
 
         public FormTestMorze()
         {
@@ -22,7 +24,7 @@ namespace YourNamespace
         {
             _questions = new List<Question>
             {
-                // Вопросы по английским буквам
+                // все вопросы
                 new Question("Что означает код .- ?", "A"),
                 new Question("Что означает код -...", "B"),
                 new Question("Что означает код -.-.", "C"),
@@ -49,7 +51,6 @@ namespace YourNamespace
                 new Question("Что означает код -..-", "X"),
                 new Question("Что означает код -.--", "Y"),
                 new Question("Что означает код --..", "Z"),
-
                 // Цифры
                 new Question("Что означает код .---- ?", "1"),
                 new Question("Что означает код ..--- ?", "2"),
@@ -61,7 +62,6 @@ namespace YourNamespace
                 new Question("Что означает код ---.. ?", "8"),
                 new Question("Что означает код ----. ?", "9"),
                 new Question("Что означает код ----- ?", "0"),
-
                 // Русские буквы
                 new Question("Что означает код .-.- ?", "А"),
                 new Question("Что означает код -...-", "Б"),
@@ -95,7 +95,6 @@ namespace YourNamespace
                 new Question("Что означает код .-...", "Э"),
                 new Question("Что означает код ...-..-", "Ю"),
                 new Question("Что означает код ..--", "Я"),
-
                 // Знаки препинания и специальные сигналы
                 new Question("Что означает код .-.-.- ?", "."),
                 new Question("Что означает код --..-- ?", ","),
@@ -114,7 +113,6 @@ namespace YourNamespace
             };
         }
 
-        // Метод для перемешивания вопросов
         private void ShuffleQuestions()
         {
             Random rnd = new Random();
@@ -130,41 +128,33 @@ namespace YourNamespace
 
         private void LoadQuestion()
         {
+            if (_questionsAsked >= MaxQuestions || _currentQuestionIndex >= _questions.Count)
+            {
+                ShowResults();
+                return;
+            }
+
             if (_currentQuestionIndex < _questions.Count)
             {
                 lblQuestion.Text = _questions[_currentQuestionIndex].Text;
                 txtAnswer.Text = "";
                 txtAnswer.Focus();
-            }
-            else
-            {
-                // Тест завершен
-                ShowResults();
+                _currentQuestionIndex++;
+                _questionsAsked++;
             }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if (_currentQuestionIndex >= _questions.Count)
-                return;
-
             string userAnswer = txtAnswer.Text.Trim().ToUpper();
-            string correctAnswer = _questions[_currentQuestionIndex].Answer.ToUpper();
+            string correctAnswer = _questions[_currentQuestionIndex - 1].Answer.ToUpper();
 
             if (userAnswer == correctAnswer)
             {
                 _score++;
             }
 
-            _currentQuestionIndex++;
-            UpdateProgress();
             LoadQuestion();
-        }
-
-        private void UpdateProgress()
-        {
-            double progress = ((double)_currentQuestionIndex / _questions.Count) * 100;
-            progressBar.Value = Math.Min((int)progress, 100);
         }
 
         private void ShowResults()
@@ -174,7 +164,7 @@ namespace YourNamespace
             btnNext.Visible = false;
             progressBar.Visible = false;
 
-            lblResult.Text = $"Тест завершен!\nВаш результат: {_score} из {_questions.Count}";
+            lblResult.Text = $"Тест завершен!\nВаш результат: {_score} из {MaxQuestions}";
         }
 
         private class Question
