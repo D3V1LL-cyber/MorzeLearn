@@ -26,3 +26,22 @@ D:\п-40\New\Morze_Learn\bin\Debug\Castle.Core.xml
 D:\п-40\New\Morze_Learn\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\п-40\New\Morze_Learn\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\п-40\New\Morze_Learn\obj\Debug\Morze_Le.BFA2DF58.Up2Date
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Morze_Learn.exe.config
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Morze_Learn.exe
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Morze_Learn.pdb
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Castle.Core.dll
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Moq.dll
+D:\Новая папка (4)\Morze_Learn\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Новая папка (4)\Morze_Learn\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Новая папка (4)\Morze_Learn\bin\Debug\Castle.Core.xml
+D:\Новая папка (4)\Morze_Learn\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Новая папка (4)\Morze_Learn\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.csproj.AssemblyReference.cache
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.Form1.resources
+D:\Новая папка (4)\Morze_Learn\obj\Debug\YourNamespace.FormTestMorze.resources
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.Properties.Resources.resources
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.csproj.GenerateResource.cache
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.csproj.CoreCompileInputs.cache
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Le.BFA2DF58.Up2Date
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.exe
+D:\Новая папка (4)\Morze_Learn\obj\Debug\Morze_Learn.pdb

@@ -53,40 +53,6 @@ namespace Morze_Learn
             _symbols.Add(new MorseSymbol { Character = "Y", MorseCode = "-.--", Category = SymbolCategory.LatinLetters, Description = "Латинская буква Y", Difficulty = 3 });
             _symbols.Add(new MorseSymbol { Character = "Z", MorseCode = "--..", Category = SymbolCategory.LatinLetters, Description = "Латинская буква Z", Difficulty = 3 });
 
-            // Русские буквы
-            _symbols.Add(new MorseSymbol { Character = "А", MorseCode = ".-", Category = SymbolCategory.LatinLetters, Description = "Русская буква А", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "Б", MorseCode = "-...", Category = SymbolCategory.LatinLetters, Description = "Русская буква Б", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "В", MorseCode = ".--", Category = SymbolCategory.LatinLetters, Description = "Русская буква В", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "Г", MorseCode = "--.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Г", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "Д", MorseCode = "-..", Category = SymbolCategory.LatinLetters, Description = "Русская буква Д", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "Е", MorseCode = ".", Category = SymbolCategory.LatinLetters, Description = "Русская буква Е", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "Ж", MorseCode = "...-.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ж", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "З", MorseCode = "--..", Category = SymbolCategory.LatinLetters, Description = "Русская буква З", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "И", MorseCode = "..", Category = SymbolCategory.LatinLetters, Description = "Русская буква И", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "Й", MorseCode = ".---", Category = SymbolCategory.LatinLetters, Description = "Русская буква Й", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "К", MorseCode = "-.-", Category = SymbolCategory.LatinLetters, Description = "Русская буква К", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "Л", MorseCode = ".-..", Category = SymbolCategory.LatinLetters, Description = "Русская буква Л", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "М", MorseCode = "--", Category = SymbolCategory.LatinLetters, Description = "Русская буква М", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "Н", MorseCode = "-.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Н", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "О", MorseCode = "---", Category = SymbolCategory.LatinLetters, Description = "Русская буква О", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "П", MorseCode = ".--.", Category = SymbolCategory.LatinLetters, Description = "Русская буква П", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "Р", MorseCode = ".-.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Р", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "С", MorseCode = "...", Category = SymbolCategory.LatinLetters, Description = "Русская буква С", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "Т", MorseCode = "-", Category = SymbolCategory.LatinLetters, Description = "Русская буква Т", Difficulty = 1 });
-            _symbols.Add(new MorseSymbol { Character = "У", MorseCode = "..-", Category = SymbolCategory.LatinLetters, Description = "Русская буква У", Difficulty = 2 });
-            _symbols.Add(new MorseSymbol { Character = "Ф", MorseCode = "..-.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ф", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Х", MorseCode = "----", Category = SymbolCategory.LatinLetters, Description = "Русская буква Х", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "Ц", MorseCode = "-.--", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ц", Difficulty = 3 });
-            _symbols.Add(new MorseSymbol { Character = "Ч", MorseCode = "---.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ч", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Ш", MorseCode = "----", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ш", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Щ", MorseCode = "----.", Category = SymbolCategory.LatinLetters, Description = "Русская буква Щ", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Ъ", MorseCode = ".--.-", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ъ", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Ы", MorseCode = "-.--", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ы", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Ь", MorseCode = "-..-", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ь", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Э", MorseCode = "..-..", Category = SymbolCategory.LatinLetters, Description = "Русская буква Э", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Ю", MorseCode = "..--", Category = SymbolCategory.LatinLetters, Description = "Русская буква Ю", Difficulty = 4 });
-            _symbols.Add(new MorseSymbol { Character = "Я", MorseCode = ".-.-", Category = SymbolCategory.LatinLetters, Description = "Русская буква Я", Difficulty = 4 });
-        
         // Цифры
         _symbols.Add(new MorseSymbol { Character = "0", MorseCode = "-----", Category = SymbolCategory.Numbers, Description = "Цифра ноль", Difficulty = 2 });
             _symbols.Add(new MorseSymbol { Character = "1", MorseCode = ".----", Category = SymbolCategory.Numbers, Description = "Цифра один", Difficulty = 2 });
