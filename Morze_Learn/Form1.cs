@@ -47,6 +47,14 @@ namespace Morze_Learn
         private Label _labelSpeedValue;
         private Panel _panelAudioControls;
 
+        // Новые элементы для пользовательского ввода
+        private Panel _panelUserInput;
+        private Label _labelUserInputTitle;
+        private TextBox _textBoxUserInput;
+        private Label _labelMorseOutput;
+        private Button _buttonPlayUserText;
+        private Label _labelMorseResult;
+
         // Константы для адаптивного дизайна
         private const int MARGIN = 20;
         private const int CONTROL_HEIGHT = 25;
@@ -65,6 +73,7 @@ namespace Morze_Learn
         {
             this.SuspendLayout();
 
+            // Основные элементы управления
             this._labelApplicationTitle = new System.Windows.Forms.Label();
             this._textBoxSearch = new System.Windows.Forms.TextBox();
             this._comboBoxCategoryFilter = new System.Windows.Forms.ComboBox();
@@ -83,7 +92,7 @@ namespace Morze_Learn
             this._labelStatusBar = new System.Windows.Forms.Label();
             this._buttonOpenMorzeTest = new System.Windows.Forms.Button();
 
-            // Новые элементы управления для звука
+            // Элементы управления для звука
             this._panelAudioControls = new System.Windows.Forms.Panel();
             this._trackBarVolume = new System.Windows.Forms.TrackBar();
             this._trackBarPitch = new System.Windows.Forms.TrackBar();
@@ -95,6 +104,14 @@ namespace Morze_Learn
             this._labelPitchValue = new System.Windows.Forms.Label();
             this._labelSpeedValue = new System.Windows.Forms.Label();
 
+            // Элементы для пользовательского ввода
+            this._panelUserInput = new System.Windows.Forms.Panel();
+            this._labelUserInputTitle = new System.Windows.Forms.Label();
+            this._textBoxUserInput = new System.Windows.Forms.TextBox();
+            this._labelMorseOutput = new System.Windows.Forms.Label();
+            this._buttonPlayUserText = new System.Windows.Forms.Button();
+            this._labelMorseResult = new System.Windows.Forms.Label();
+
             ((System.ComponentModel.ISupportInitialize)(this._dataGridViewSymbolsTable)).BeginInit();
             this._panelSymbolDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxSymbolImage)).BeginInit();
@@ -102,12 +119,13 @@ namespace Morze_Learn
             ((System.ComponentModel.ISupportInitialize)(this._trackBarVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarPitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarSpeed)).BeginInit();
+            this._panelUserInput.SuspendLayout();
             this.SuspendLayout();
 
             // 
             // _labelApplicationTitle
             // 
-            this._labelApplicationTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this._labelApplicationTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this._labelApplicationTitle.ForeColor = System.Drawing.Color.DarkBlue;
             this._labelApplicationTitle.Location = new System.Drawing.Point(MARGIN, 15);
             this._labelApplicationTitle.Name = "_labelApplicationTitle";
@@ -155,7 +173,7 @@ namespace Morze_Learn
             this._buttonShowAll.Name = "_buttonShowAll";
             this._buttonShowAll.Size = new System.Drawing.Size(BUTTON_WIDTH, CONTROL_HEIGHT);
             this._buttonShowAll.TabIndex = 3;
-            this._buttonShowAll.Text = "Показать все символы";
+            this._buttonShowAll.Text = "Показать все";
             this._buttonShowAll.UseVisualStyleBackColor = false;
             this._buttonShowAll.Click += new System.EventHandler(this.ButtonShowAll_Click);
             this._buttonShowAll.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -177,7 +195,7 @@ namespace Morze_Learn
             this._dataGridViewSymbolsTable.ReadOnly = true;
             this._dataGridViewSymbolsTable.RowHeadersVisible = false;
             this._dataGridViewSymbolsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this._dataGridViewSymbolsTable.Size = new System.Drawing.Size(500, 350);
+            this._dataGridViewSymbolsTable.Size = new System.Drawing.Size(500, 250);
             this._dataGridViewSymbolsTable.TabIndex = 4;
             this._dataGridViewSymbolsTable.SelectionChanged += new System.EventHandler(this.DataGridViewSymbolsTable_SelectionChanged);
             this._dataGridViewSymbolsTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
@@ -212,7 +230,7 @@ namespace Morze_Learn
             this._panelSymbolDetails.Controls.Add(this._buttonPlaySound);
             this._panelSymbolDetails.Location = new System.Drawing.Point(540, 100);
             this._panelSymbolDetails.Name = "_panelSymbolDetails";
-            this._panelSymbolDetails.Size = new System.Drawing.Size(330, 350);
+            this._panelSymbolDetails.Size = new System.Drawing.Size(330, 250);
             this._panelSymbolDetails.TabIndex = 5;
             this._panelSymbolDetails.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             // 
@@ -228,11 +246,11 @@ namespace Morze_Learn
             // 
             // _labelSelectedSymbolDisplay
             // 
-            this._labelSelectedSymbolDisplay.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold);
+            this._labelSelectedSymbolDisplay.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold);
             this._labelSelectedSymbolDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this._labelSelectedSymbolDisplay.Location = new System.Drawing.Point(10, 50);
+            this._labelSelectedSymbolDisplay.Location = new System.Drawing.Point(10, 40);
             this._labelSelectedSymbolDisplay.Name = "_labelSelectedSymbolDisplay";
-            this._labelSelectedSymbolDisplay.Size = new System.Drawing.Size(300, 70);
+            this._labelSelectedSymbolDisplay.Size = new System.Drawing.Size(300, 60);
             this._labelSelectedSymbolDisplay.TabIndex = 1;
             this._labelSelectedSymbolDisplay.Text = "—";
             this._labelSelectedSymbolDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -240,11 +258,11 @@ namespace Morze_Learn
             // 
             // _labelMorseCodeDisplay
             // 
-            this._labelMorseCodeDisplay.Font = new System.Drawing.Font("Segoe UI", 24F);
+            this._labelMorseCodeDisplay.Font = new System.Drawing.Font("Segoe UI", 18F);
             this._labelMorseCodeDisplay.ForeColor = System.Drawing.Color.DarkRed;
-            this._labelMorseCodeDisplay.Location = new System.Drawing.Point(10, 130);
+            this._labelMorseCodeDisplay.Location = new System.Drawing.Point(10, 110);
             this._labelMorseCodeDisplay.Name = "_labelMorseCodeDisplay";
-            this._labelMorseCodeDisplay.Size = new System.Drawing.Size(300, 40);
+            this._labelMorseCodeDisplay.Size = new System.Drawing.Size(300, 35);
             this._labelMorseCodeDisplay.TabIndex = 2;
             this._labelMorseCodeDisplay.Text = "—";
             this._labelMorseCodeDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,9 +270,9 @@ namespace Morze_Learn
             // 
             // _labelSymbolDescription
             // 
-            this._labelSymbolDescription.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this._labelSymbolDescription.Font = new System.Drawing.Font("Segoe UI", 9F);
             this._labelSymbolDescription.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this._labelSymbolDescription.Location = new System.Drawing.Point(10, 190);
+            this._labelSymbolDescription.Location = new System.Drawing.Point(10, 155);
             this._labelSymbolDescription.Name = "_labelSymbolDescription";
             this._labelSymbolDescription.Size = new System.Drawing.Size(300, 40);
             this._labelSymbolDescription.TabIndex = 3;
@@ -266,9 +284,9 @@ namespace Morze_Learn
             // 
             this._pictureBoxSymbolImage.BackColor = System.Drawing.Color.White;
             this._pictureBoxSymbolImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._pictureBoxSymbolImage.Location = new System.Drawing.Point(10, 240);
+            this._pictureBoxSymbolImage.Location = new System.Drawing.Point(20, 200);
             this._pictureBoxSymbolImage.Name = "_pictureBoxSymbolImage";
-            this._pictureBoxSymbolImage.Size = new System.Drawing.Size(120, 90);
+            this._pictureBoxSymbolImage.Size = new System.Drawing.Size(100, 35);
             this._pictureBoxSymbolImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._pictureBoxSymbolImage.TabIndex = 4;
             this._pictureBoxSymbolImage.TabStop = false;
@@ -279,11 +297,11 @@ namespace Morze_Learn
             this._buttonPlaySound.BackColor = System.Drawing.Color.ForestGreen;
             this._buttonPlaySound.Enabled = false;
             this._buttonPlaySound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._buttonPlaySound.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this._buttonPlaySound.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this._buttonPlaySound.ForeColor = System.Drawing.Color.White;
-            this._buttonPlaySound.Location = new System.Drawing.Point(140, 240);
+            this._buttonPlaySound.Location = new System.Drawing.Point(150, 200);
             this._buttonPlaySound.Name = "_buttonPlaySound";
-            this._buttonPlaySound.Size = new System.Drawing.Size(170, 40);
+            this._buttonPlaySound.Size = new System.Drawing.Size(160, 35);
             this._buttonPlaySound.TabIndex = 5;
             this._buttonPlaySound.Text = "▶ Воспроизвести";
             this._buttonPlaySound.UseVisualStyleBackColor = false;
@@ -308,7 +326,7 @@ namespace Morze_Learn
             this._buttonOpenMorzeTest.ForeColor = System.Drawing.Color.White;
             this._buttonOpenMorzeTest.Location = new System.Drawing.Point(691, 12);
             this._buttonOpenMorzeTest.Name = "_buttonOpenMorzeTest";
-            this._buttonOpenMorzeTest.Size = new System.Drawing.Size(190, 73);
+            this._buttonOpenMorzeTest.Size = new System.Drawing.Size(190, 40);
             this._buttonOpenMorzeTest.TabIndex = 7;
             this._buttonOpenMorzeTest.Text = "Тесты по Морзе";
             this._buttonOpenMorzeTest.UseVisualStyleBackColor = false;
@@ -336,11 +354,11 @@ namespace Morze_Learn
             // 
             // _trackBarVolume
             // 
-            this._trackBarVolume.Location = new System.Drawing.Point(70, 10);
+            this._trackBarVolume.Location = new System.Drawing.Point(70, 8);
             this._trackBarVolume.Maximum = 100;
             this._trackBarVolume.Minimum = 1;
             this._trackBarVolume.Name = "_trackBarVolume";
-            this._trackBarVolume.Size = new System.Drawing.Size(150, 45);
+            this._trackBarVolume.Size = new System.Drawing.Size(120, 45);
             this._trackBarVolume.TabIndex = 0;
             this._trackBarVolume.Value = 80;
             this._trackBarVolume.Scroll += new System.EventHandler(this.TrackBarVolume_Scroll);
@@ -348,11 +366,11 @@ namespace Morze_Learn
             // 
             // _trackBarPitch
             // 
-            this._trackBarPitch.Location = new System.Drawing.Point(320, 10);
+            this._trackBarPitch.Location = new System.Drawing.Point(300, 8);
             this._trackBarPitch.Maximum = 1500;
             this._trackBarPitch.Minimum = 300;
             this._trackBarPitch.Name = "_trackBarPitch";
-            this._trackBarPitch.Size = new System.Drawing.Size(150, 45);
+            this._trackBarPitch.Size = new System.Drawing.Size(120, 45);
             this._trackBarPitch.TabIndex = 1;
             this._trackBarPitch.Value = 800;
             this._trackBarPitch.Scroll += new System.EventHandler(this.TrackBarPitch_Scroll);
@@ -360,11 +378,11 @@ namespace Morze_Learn
             // 
             // _trackBarSpeed
             // 
-            this._trackBarSpeed.Location = new System.Drawing.Point(570, 10);
+            this._trackBarSpeed.Location = new System.Drawing.Point(530, 8);
             this._trackBarSpeed.Maximum = 200;
             this._trackBarSpeed.Minimum = 50;
             this._trackBarSpeed.Name = "_trackBarSpeed";
-            this._trackBarSpeed.Size = new System.Drawing.Size(150, 45);
+            this._trackBarSpeed.Size = new System.Drawing.Size(120, 45);
             this._trackBarSpeed.TabIndex = 2;
             this._trackBarSpeed.Value = 100;
             this._trackBarSpeed.Scroll += new System.EventHandler(this.TrackBarSpeed_Scroll);
@@ -373,10 +391,10 @@ namespace Morze_Learn
             // _labelVolume
             // 
             this._labelVolume.AutoSize = true;
-            this._labelVolume.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this._labelVolume.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this._labelVolume.Location = new System.Drawing.Point(10, 12);
             this._labelVolume.Name = "_labelVolume";
-            this._labelVolume.Size = new System.Drawing.Size(54, 15);
+            this._labelVolume.Size = new System.Drawing.Size(54, 13);
             this._labelVolume.TabIndex = 3;
             this._labelVolume.Text = "Громкость:";
             this._labelVolume.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -384,10 +402,10 @@ namespace Morze_Learn
             // _labelPitch
             // 
             this._labelPitch.AutoSize = true;
-            this._labelPitch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this._labelPitch.Location = new System.Drawing.Point(260, 12);
+            this._labelPitch.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this._labelPitch.Location = new System.Drawing.Point(240, 12);
             this._labelPitch.Name = "_labelPitch";
-            this._labelPitch.Size = new System.Drawing.Size(54, 15);
+            this._labelPitch.Size = new System.Drawing.Size(54, 13);
             this._labelPitch.TabIndex = 4;
             this._labelPitch.Text = "Тональность:";
             this._labelPitch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -395,10 +413,10 @@ namespace Morze_Learn
             // _labelSpeed
             // 
             this._labelSpeed.AutoSize = true;
-            this._labelSpeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this._labelSpeed.Location = new System.Drawing.Point(510, 12);
+            this._labelSpeed.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this._labelSpeed.Location = new System.Drawing.Point(470, 12);
             this._labelSpeed.Name = "_labelSpeed";
-            this._labelSpeed.Size = new System.Drawing.Size(54, 15);
+            this._labelSpeed.Size = new System.Drawing.Size(54, 13);
             this._labelSpeed.TabIndex = 5;
             this._labelSpeed.Text = "Скорость:";
             this._labelSpeed.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -407,7 +425,7 @@ namespace Morze_Learn
             // 
             this._labelVolumeValue.AutoSize = true;
             this._labelVolumeValue.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this._labelVolumeValue.Location = new System.Drawing.Point(230, 12);
+            this._labelVolumeValue.Location = new System.Drawing.Point(200, 12);
             this._labelVolumeValue.Name = "_labelVolumeValue";
             this._labelVolumeValue.Size = new System.Drawing.Size(25, 13);
             this._labelVolumeValue.TabIndex = 6;
@@ -418,7 +436,7 @@ namespace Morze_Learn
             // 
             this._labelPitchValue.AutoSize = true;
             this._labelPitchValue.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this._labelPitchValue.Location = new System.Drawing.Point(480, 12);
+            this._labelPitchValue.Location = new System.Drawing.Point(430, 12);
             this._labelPitchValue.Name = "_labelPitchValue";
             this._labelPitchValue.Size = new System.Drawing.Size(25, 13);
             this._labelPitchValue.TabIndex = 7;
@@ -429,17 +447,92 @@ namespace Morze_Learn
             // 
             this._labelSpeedValue.AutoSize = true;
             this._labelSpeedValue.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this._labelSpeedValue.Location = new System.Drawing.Point(730, 12);
+            this._labelSpeedValue.Location = new System.Drawing.Point(660, 12);
             this._labelSpeedValue.Name = "_labelSpeedValue";
             this._labelSpeedValue.Size = new System.Drawing.Size(31, 13);
             this._labelSpeedValue.TabIndex = 8;
             this._labelSpeedValue.Text = "100%";
             this._labelSpeedValue.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
+            // _panelUserInput
+            // 
+            this._panelUserInput.BackColor = System.Drawing.Color.Honeydew;
+            this._panelUserInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._panelUserInput.Controls.Add(this._labelMorseResult);
+            this._panelUserInput.Controls.Add(this._buttonPlayUserText);
+            this._panelUserInput.Controls.Add(this._labelMorseOutput);
+            this._panelUserInput.Controls.Add(this._textBoxUserInput);
+            this._panelUserInput.Controls.Add(this._labelUserInputTitle);
+            this._panelUserInput.Location = new System.Drawing.Point(MARGIN, 360);
+            this._panelUserInput.Name = "_panelUserInput";
+            this._panelUserInput.Size = new System.Drawing.Size(850, 40);
+            this._panelUserInput.TabIndex = 9;
+            this._panelUserInput.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            // 
+            // _labelUserInputTitle
+            // 
+            this._labelUserInputTitle.AutoSize = true;
+            this._labelUserInputTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this._labelUserInputTitle.Location = new System.Drawing.Point(10, 12);
+            this._labelUserInputTitle.Name = "_labelUserInputTitle";
+            this._labelUserInputTitle.Size = new System.Drawing.Size(120, 15);
+            this._labelUserInputTitle.TabIndex = 0;
+            this._labelUserInputTitle.Text = "Введите текст:";
+            this._labelUserInputTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // _textBoxUserInput
+            // 
+            this._textBoxUserInput.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this._textBoxUserInput.Location = new System.Drawing.Point(130, 9);
+            this._textBoxUserInput.Name = "_textBoxUserInput";
+            this._textBoxUserInput.Size = new System.Drawing.Size(200, 23);
+            this._textBoxUserInput.TabIndex = 1;
+            this._textBoxUserInput.TextChanged += new System.EventHandler(this.TextBoxUserInput_TextChanged);
+            this._textBoxUserInput.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // _labelMorseOutput
+            // 
+            this._labelMorseOutput.AutoSize = true;
+            this._labelMorseOutput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this._labelMorseOutput.Location = new System.Drawing.Point(340, 12);
+            this._labelMorseOutput.Name = "_labelMorseOutput";
+            this._labelMorseOutput.Size = new System.Drawing.Size(90, 15);
+            this._labelMorseOutput.TabIndex = 2;
+            this._labelMorseOutput.Text = "Код Морзе:";
+            this._labelMorseOutput.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // _buttonPlayUserText
+            // 
+            this._buttonPlayUserText.BackColor = System.Drawing.Color.Teal;
+            this._buttonPlayUserText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._buttonPlayUserText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this._buttonPlayUserText.ForeColor = System.Drawing.Color.White;
+            this._buttonPlayUserText.Location = new System.Drawing.Point(680, 6);
+            this._buttonPlayUserText.Name = "_buttonPlayUserText";
+            this._buttonPlayUserText.Size = new System.Drawing.Size(160, 25);
+            this._buttonPlayUserText.TabIndex = 3;
+            this._buttonPlayUserText.Text = "▶ Воспроизвести текст";
+            this._buttonPlayUserText.UseVisualStyleBackColor = false;
+            this._buttonPlayUserText.Click += new System.EventHandler(this.ButtonPlayUserText_Click);
+            this._buttonPlayUserText.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            // 
+            // _labelMorseResult
+            // 
+            this._labelMorseResult.AutoSize = true;
+            this._labelMorseResult.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+            this._labelMorseResult.ForeColor = System.Drawing.Color.DarkRed;
+            this._labelMorseResult.Location = new System.Drawing.Point(430, 12);
+            this._labelMorseResult.Name = "_labelMorseResult";
+            this._labelMorseResult.Size = new System.Drawing.Size(200, 15);
+            this._labelMorseResult.TabIndex = 4;
+            this._labelMorseResult.Text = "Введите текст для преобразования";
+            this._labelMorseResult.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(893, 561);
+            this.ClientSize = new System.Drawing.Size(900, 550);
+            this.Controls.Add(this._panelUserInput);
             this.Controls.Add(this._panelAudioControls);
             this.Controls.Add(this._buttonOpenMorzeTest);
             this.Controls.Add(this._labelApplicationTitle);
@@ -450,7 +543,7 @@ namespace Morze_Learn
             this.Controls.Add(this._panelSymbolDetails);
             this.Controls.Add(this._labelStatusBar);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MinimumSize = new System.Drawing.Size(909, 600);
+            this.MinimumSize = new System.Drawing.Size(916, 589);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Изучение Азбуки Морзе - Обучающее Приложение";
@@ -463,6 +556,8 @@ namespace Morze_Learn
             ((System.ComponentModel.ISupportInitialize)(this._trackBarVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarPitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarSpeed)).EndInit();
+            this._panelUserInput.ResumeLayout(false);
+            this._panelUserInput.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,25 +576,30 @@ namespace Morze_Learn
             // Обновляем размеры основных элементов
             if (clientWidth > 900)
             {
-                // Адаптивная ширина таблицы (40% от ширины окна)
-                int tableWidth = (int)(clientWidth * 0.4) - MARGIN * 2;
+                // Адаптивная ширина таблицы (45% от ширины окна)
+                int tableWidth = (int)(clientWidth * 0.45) - MARGIN * 2;
                 _dataGridViewSymbolsTable.Width = Math.Max(400, tableWidth);
 
                 // Позиция панели деталей
                 _panelSymbolDetails.Left = _dataGridViewSymbolsTable.Right + MARGIN;
                 _panelSymbolDetails.Width = clientWidth - _panelSymbolDetails.Left - MARGIN;
 
-                // Высота элементов
-                int availableHeight = clientHeight - 160; // 160px - отступы сверху и снизу
-                _dataGridViewSymbolsTable.Height = availableHeight;
-                _panelSymbolDetails.Height = availableHeight;
+                // Высота элементов - равномерное распределение
+                int topSectionHeight = clientHeight - 200; // Место для нижних панелей
+
+                _dataGridViewSymbolsTable.Height = topSectionHeight - 120;
+                _panelSymbolDetails.Height = topSectionHeight - 120;
+
+                // Позиция панели пользовательского ввода
+                _panelUserInput.Top = topSectionHeight - 50;
+                _panelUserInput.Width = clientWidth - MARGIN * 2;
 
                 // Позиция панели аудио-контролов
-                _panelAudioControls.Top = clientHeight - 70;
+                _panelAudioControls.Top = topSectionHeight;
                 _panelAudioControls.Width = clientWidth - MARGIN * 2;
 
                 // Позиция статусной строки
-                _labelStatusBar.Top = clientHeight - 30;
+                _labelStatusBar.Top = clientHeight - 25;
                 _labelStatusBar.Width = clientWidth - MARGIN * 2;
 
                 // Позиция кнопки тестов
@@ -509,10 +609,11 @@ namespace Morze_Learn
             // Обновляем размеры внутренних элементов панели деталей
             if (_panelSymbolDetails.Width > 0)
             {
-                _labelDetailSectionTitle.Width = _panelSymbolDetails.Width - 20;
-                _labelSelectedSymbolDisplay.Width = _panelSymbolDetails.Width - 20;
-                _labelMorseCodeDisplay.Width = _panelSymbolDetails.Width - 20;
-                _labelSymbolDescription.Width = _panelSymbolDetails.Width - 20;
+                int panelWidth = _panelSymbolDetails.Width - 20;
+                _labelDetailSectionTitle.Width = panelWidth;
+                _labelSelectedSymbolDisplay.Width = panelWidth;
+                _labelMorseCodeDisplay.Width = panelWidth;
+                _labelSymbolDescription.Width = panelWidth;
 
                 // Адаптивное позиционирование кнопки воспроизведения
                 if (_panelSymbolDetails.Width > 250)
@@ -521,15 +622,28 @@ namespace Morze_Learn
                 }
             }
 
+            // Адаптивное распределение на панели пользовательского ввода
+            if (_panelUserInput.Width > 600)
+            {
+                int availableWidth = _panelUserInput.Width - 40;
+
+                _textBoxUserInput.Width = (int)(availableWidth * 0.25);
+                _labelMorseOutput.Left = _textBoxUserInput.Right + 20;
+                _labelMorseResult.Left = _labelMorseOutput.Right + 5;
+                _labelMorseResult.Width = (int)(availableWidth * 0.35);
+
+                _buttonPlayUserText.Left = _panelUserInput.Width - 170;
+            }
+
             // Адаптивное распределение ползунков на панели аудио-контролов
             if (_panelAudioControls.Width > 600)
             {
                 int availableWidth = _panelAudioControls.Width - 40;
                 int sectionWidth = availableWidth / 3;
 
-                _trackBarVolume.Width = sectionWidth - 80;
-                _trackBarPitch.Width = sectionWidth - 80;
-                _trackBarSpeed.Width = sectionWidth - 80;
+                _trackBarVolume.Width = sectionWidth - 70;
+                _trackBarPitch.Width = sectionWidth - 70;
+                _trackBarSpeed.Width = sectionWidth - 70;
 
                 _trackBarPitch.Left = sectionWidth + 20;
                 _labelPitch.Left = _trackBarPitch.Left - 60;
@@ -546,7 +660,7 @@ namespace Morze_Learn
         private void _buttonOpenMorzeTest_Click(object sender, EventArgs e)
         {
             var formTestMorze = new FormTestMorze();
-            formTestMorze.ShowDialog(); // открывает модально
+            formTestMorze.ShowDialog();
         }
 
         private void InitializeApplication()
@@ -565,6 +679,9 @@ namespace Morze_Learn
             UpdateLayout();
 
             RefreshSymbolsTable();
+
+            // Устанавливаем начальный текст для поля результата Морзе
+            _labelMorseResult.Text = "Введите текст для преобразования";
         }
 
         private void UpdateAudioSettings()
@@ -629,7 +746,6 @@ namespace Morze_Learn
             }
             else if (string.IsNullOrEmpty(_textBoxSearch.Text) || _textBoxSearch.Text == "Поиск символа...")
             {
-                // Если поиск очищен, показываем все символы текущей категории
                 var selectedCategory = (MorseRepository.SymbolCategory)_comboBoxCategoryFilter.SelectedIndex;
                 _currentSymbols = _morseRepository.GetSymbolsByCategory(selectedCategory);
                 RefreshSymbolsTable();
@@ -665,7 +781,6 @@ namespace Morze_Learn
             if (_dataGridViewSymbolsTable.SelectedRows.Count > 0)
             {
                 var selectedRow = _dataGridViewSymbolsTable.SelectedRows[0];
-                // Используем правильное имя колонки
                 var selectedCharacter = selectedRow.Cells["dataGridViewTextBoxColumn1"].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(selectedCharacter))
@@ -685,7 +800,6 @@ namespace Morze_Learn
             _labelMorseCodeDisplay.Text = symbol.MorseCode;
             _labelSymbolDescription.Text = symbol.Description;
 
-            // Загрузка и отображение изображения символа
             try
             {
                 if (symbol.HasImage && !string.IsNullOrEmpty(symbol.ImagePath))
@@ -703,7 +817,6 @@ namespace Morze_Learn
                 UpdateStatusBar($"Ошибка загрузки изображения: {ex.Message}");
             }
 
-            // Настройка доступности кнопки воспроизведения звука
             _buttonPlaySound.Enabled = symbol.HasSound;
             _buttonPlaySound.BackColor = symbol.HasSound ? Color.ForestGreen : Color.Gray;
 
@@ -715,7 +828,6 @@ namespace Morze_Learn
             if (_dataGridViewSymbolsTable.SelectedRows.Count > 0)
             {
                 var selectedRow = _dataGridViewSymbolsTable.SelectedRows[0];
-                // Используем правильное имя колонки
                 var selectedCharacter = selectedRow.Cells["dataGridViewTextBoxColumn1"].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(selectedCharacter))
@@ -723,48 +835,110 @@ namespace Morze_Learn
                     var selectedSymbol = _morseRepository.GetSymbolByCharacter(selectedCharacter);
                     if (selectedSymbol != null && selectedSymbol.HasSound)
                     {
-                        try
-                        {
-                            _buttonPlaySound.Enabled = false;
-                            _buttonPlaySound.Text = "⏸ Воспроизведение...";
-                            _buttonPlaySound.BackColor = Color.Orange;
-
-                            UpdateStatusBar($"Воспроизведение кода Морзе: {selectedSymbol.MorseCode}");
-
-                            await _audioPlayback.PlayMorseSequenceAsync(selectedSymbol.MorseCode);
-
-                            _buttonPlaySound.Text = "▶ Воспроизвести";
-                            _buttonPlaySound.BackColor = Color.ForestGreen;
-                            UpdateStatusBar($"Воспроизведение завершено: {selectedSymbol.Character}");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Ошибка воспроизведения звукового сигнала: {ex.Message}",
-                                          "Ошибка аудиовоспроизведения",
-                                          MessageBoxButtons.OK,
-                                          MessageBoxIcon.Error);
-                            _buttonPlaySound.Text = "❌ Ошибка воспроизведения";
-                            _buttonPlaySound.BackColor = Color.Red;
-                            UpdateStatusBar("Ошибка при воспроизведении звукового сигнала");
-                        }
-                        finally
-                        {
-                            _buttonPlaySound.Enabled = selectedSymbol.HasSound;
-
-                            // Восстановление нормального вида кнопки через 2 секунды
-                            await Task.Delay(2000);
-                            if (_buttonPlaySound.Text == "❌ Ошибка воспроизведения")
-                            {
-                                _buttonPlaySound.Text = "▶ Воспроизвести";
-                                _buttonPlaySound.BackColor = selectedSymbol.HasSound ? Color.ForestGreen : Color.Gray;
-                            }
-                        }
+                        await PlayMorseCodeAsync(selectedSymbol.MorseCode, _buttonPlaySound, $"символа {selectedSymbol.Character}");
                     }
                 }
             }
         }
 
-        // Новые обработчики событий для ползунков
+        // НОВЫЕ МЕТОДЫ ДЛЯ ПОЛЬЗОВАТЕЛЬСКОГО ВВОДА
+
+        private void TextBoxUserInput_TextChanged(object sender, EventArgs e)
+        {
+            string userText = _textBoxUserInput.Text.Trim();
+            if (!string.IsNullOrEmpty(userText))
+            {
+                string morseCode = ConvertTextToMorse(userText);
+                _labelMorseResult.Text = morseCode;
+                UpdateStatusBar($"Текст преобразован в код Морзе: {morseCode}");
+            }
+            else
+            {
+                _labelMorseResult.Text = "Введите текст для преобразования";
+                UpdateStatusBar("Введите текст для преобразования в код Морзе");
+            }
+        }
+
+        private async void ButtonPlayUserText_Click(object sender, EventArgs e)
+        {
+            string userText = _textBoxUserInput.Text.Trim();
+            if (!string.IsNullOrEmpty(userText))
+            {
+                string morseCode = ConvertTextToMorse(userText);
+                await PlayMorseCodeAsync(morseCode, _buttonPlayUserText, "текста");
+            }
+            else
+            {
+                MessageBox.Show("Введите текст для воспроизведения", "Пустой ввод",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private string ConvertTextToMorse(string text)
+        {
+            var morseBuilder = new System.Text.StringBuilder();
+
+            foreach (char character in text.ToUpper())
+            {
+                var symbol = _morseRepository.GetSymbolByCharacter(character.ToString());
+                if (symbol != null)
+                {
+                    morseBuilder.Append(symbol.MorseCode);
+                    morseBuilder.Append(" "); // пробел между символами
+                }
+                else if (character == ' ')
+                {
+                    morseBuilder.Append("/ "); // разделитель слов
+                }
+                else
+                {
+                    morseBuilder.Append("? "); // неизвестный символ
+                }
+            }
+
+            return morseBuilder.ToString().Trim();
+        }
+
+        private async Task PlayMorseCodeAsync(string morseCode, Button playButton, string context)
+        {
+            try
+            {
+                playButton.Enabled = false;
+                playButton.Text = "⏸ Воспроизведение...";
+                playButton.BackColor = Color.Orange;
+
+                UpdateStatusBar($"Воспроизведение кода Морзе: {morseCode}");
+
+                await _audioPlayback.PlayMorseSequenceAsync(morseCode);
+
+                playButton.Text = "▶ Воспроизвести" + (playButton == _buttonPlayUserText ? " текст" : "");
+                playButton.BackColor = playButton == _buttonPlayUserText ? Color.Teal : Color.ForestGreen;
+                UpdateStatusBar($"Воспроизведение завершено: {context}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка воспроизведения звукового сигнала: {ex.Message}",
+                              "Ошибка аудиовоспроизведения",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+                playButton.Text = "❌ Ошибка воспроизведения";
+                playButton.BackColor = Color.Red;
+                UpdateStatusBar("Ошибка при воспроизведении звукового сигнала");
+            }
+            finally
+            {
+                playButton.Enabled = true;
+
+                await Task.Delay(2000);
+                if (playButton.Text == "❌ Ошибка воспроизведения")
+                {
+                    playButton.Text = "▶ Воспроизвести" + (playButton == _buttonPlayUserText ? " текст" : "");
+                    playButton.BackColor = playButton == _buttonPlayUserText ? Color.Teal : Color.ForestGreen;
+                }
+            }
+        }
+
+        // Обработчики событий для ползунков
         private void TrackBarVolume_Scroll(object sender, EventArgs e)
         {
             UpdateAudioSettings();
@@ -787,7 +961,6 @@ namespace Morze_Learn
         {
             base.OnFormClosing(e);
 
-            // Безопасное освобождение ресурсов
             if (_audioPlayback != null)
             {
                 _audioPlayback.Dispose();
