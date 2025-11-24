@@ -16,6 +16,11 @@ namespace Morze_Learn
         private bool _disposed = false;
         private SoundPlayer _currentPlayer;
 
+        // Новые свойства для настройки звука
+        public float Volume { get; set; } = 0.8f;
+        public int BaseFrequency { get; set; } = 800;
+        public float SpeedMultiplier { get; set; } = 1.0f;
+
         public AudioPlayback()
         {
         }
@@ -33,26 +38,36 @@ namespace Morze_Learn
                 switch (ch)
                 {
                     case '.':
-                        await PlayBeep(DotDurationMs, 800); // Высокий тон для точки
-                        await Task.Delay(GapBetweenElementsMs);
+                        await PlayBeep(GetAdjustedDuration(DotDurationMs), GetAdjustedFrequency(BaseFrequency));
+                        await Task.Delay(GetAdjustedDuration(GapBetweenElementsMs));
                         break;
                     case '-':
-                        await PlayBeep(DashDurationMs, 600); // Низкий тон для тире
-                        await Task.Delay(GapBetweenElementsMs);
+                        await PlayBeep(GetAdjustedDuration(DashDurationMs), GetAdjustedFrequency(BaseFrequency - 200));
+                        await Task.Delay(GetAdjustedDuration(GapBetweenElementsMs));
                         break;
                     case ' ':
                         // Пауза между словами
-                        await Task.Delay(GapBetweenWordsMs);
+                        await Task.Delay(GetAdjustedDuration(GapBetweenWordsMs));
                         break;
                     case '/':
                         // Можно использовать '/' для разделения слов
-                        await Task.Delay(GapBetweenWordsMs);
+                        await Task.Delay(GetAdjustedDuration(GapBetweenWordsMs));
                         break;
                     default:
                         // Игнорировать остальные символы
                         break;
                 }
             }
+        }
+
+        private int GetAdjustedDuration(int baseDuration)
+        {
+            return (int)(baseDuration / SpeedMultiplier);
+        }
+
+        private int GetAdjustedFrequency(int baseFrequency)
+        {
+            return baseFrequency;
         }
 
         private async Task PlayBeep(int durationMs, int frequency)
@@ -70,22 +85,34 @@ namespace Morze_Learn
                         Console.Beep(frequency, durationMs);
                     }
                 }
-                catch (Exception)
+                catch (PlatformNotSupportedException)
                 {
-                    // Если Console.Beep не поддерживается, используем альтернативный метод
+                    // Console.Beep не поддерживается на этой платформе
                     if (!_disposed)
                     {
-                        PlayBeepAlternative(durationMs);
+                        PlayBeepAlternative(durationMs, frequency);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Другие ошибки Console.Beep
+                    System.Diagnostics.Debug.WriteLine($"Ошибка Console.Beep: {ex.Message}");
+                    if (!_disposed)
+                    {
+                        PlayBeepAlternative(durationMs, frequency);
                     }
                 }
             });
         }
 
         // Альтернативный метод для воспроизведения с использованием System.Media.SoundPlayer
-        private void PlayBeepAlternative(int durationMs)
+        private void PlayBeepAlternative(int durationMs, int frequency)
         {
             if (_disposed)
                 return;
+
+            MemoryStream stream = null;
+            BinaryWriter writer = null;
 
             try
             {
@@ -94,49 +121,53 @@ namespace Morze_Learn
                 _currentPlayer?.Dispose();
 
                 // Создаем простой звуковой сигнал
-                var stream = new MemoryStream();
-                var writer = new BinaryWriter(stream);
+                stream = new MemoryStream();
+                writer = new BinaryWriter(stream);
+
+                const int SAMPLE_RATE = 8000;
+                short channels = 1;
+                short bitsPerSample = 16;
+                short frameSize = (short)(channels * (bitsPerSample / 8));
+                int bytesPerSecond = SAMPLE_RATE * frameSize;
 
                 // RIFF заголовок
                 writer.Write("RIFF".ToCharArray());
-                writer.Write(36 + durationMs * 8);
+                writer.Write(36 + (int)(durationMs * 0.001 * SAMPLE_RATE * frameSize));
                 writer.Write("WAVE".ToCharArray());
 
                 // fmt chunk
                 writer.Write("fmt ".ToCharArray());
                 writer.Write(16);
                 writer.Write((short)1); // PCM format
-                writer.Write((short)1); // mono
-                writer.Write(8000); // sample rate
-                writer.Write(8000); // byte rate
-                writer.Write((short)1); // block align
-                writer.Write((short)8); // bits per sample
+                writer.Write(channels); // mono
+                writer.Write(SAMPLE_RATE); // sample rate
+                writer.Write(bytesPerSecond); // byte rate
+                writer.Write(frameSize); // block align
+                writer.Write(bitsPerSample); // bits per sample
 
                 // data chunk
                 writer.Write("data".ToCharArray());
-                writer.Write(durationMs * 8);
+                writer.Write((int)(durationMs * 0.001 * SAMPLE_RATE * frameSize));
 
                 // Генерируем синусоидальную волну
-                for (int i = 0; i < durationMs * 8; i++)
+                double amplitude = Volume * 32000; // Учитываем громкость
+                int samples = (int)(durationMs * 0.001 * SAMPLE_RATE);
+
+                for (int i = 0; i < samples; i++)
                 {
                     if (_disposed) break;
 
-                    double t = (double)i / 8000;
-                    double frequency = 800;
-                    double amplitude = 32;
+                    double t = (double)i / SAMPLE_RATE;
                     double value = amplitude * Math.Sin(2 * Math.PI * frequency * t);
-                    writer.Write((byte)(value + 128));
+                    writer.Write((short)value);
                 }
 
-                if (!_disposed)
+                if (!_disposed && stream.Length > 0)
                 {
                     stream.Seek(0, SeekOrigin.Begin);
                     _currentPlayer = new SoundPlayer(stream);
                     _currentPlayer.PlaySync();
                 }
-
-                writer.Close();
-                stream.Close();
             }
             catch (ObjectDisposedException)
             {
@@ -146,6 +177,14 @@ namespace Morze_Learn
             {
                 // Логируем ошибку, но не прерываем выполнение
                 System.Diagnostics.Debug.WriteLine($"Ошибка воспроизведения звука: {ex.Message}");
+            }
+            finally
+            {
+                // Освобождаем ресурсы
+                writer?.Close();
+                stream?.Close();
+                writer?.Dispose();
+                stream?.Dispose();
             }
         }
 
@@ -166,8 +205,6 @@ namespace Morze_Learn
                     _currentPlayer?.Dispose();
                     _currentPlayer = null;
                 }
-
-                // Освобождаем неуправляемые ресурсы (если есть)
 
                 _disposed = true;
             }
