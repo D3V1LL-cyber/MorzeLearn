@@ -118,7 +118,6 @@
             this.buttonLeaderboard.TabIndex = 3;
             this.buttonLeaderboard.Text = "🏆 Лидеры";
             this.buttonLeaderboard.UseVisualStyleBackColor = false;
-            this.buttonLeaderboard.Click += new System.EventHandler(this.BtnLeaderboard_Click);
             // 
             // buttonRestart
             // 

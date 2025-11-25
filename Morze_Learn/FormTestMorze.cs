@@ -295,25 +295,9 @@ namespace YourNamespace
             string groupsText = selectedGroupsCount == 4 ? "Все группы" : $"{selectedGroupsCount} групп";
             labelStatus.Text = $"Тест завершен. Пользователь: {_currentUserName} | {groupsText} | Результат: {_score}/{MaxQuestions} ({percentage:0}%)";
 
-            SaveToLeaderboard();
         }
 
-        private void SaveToLeaderboard()
-        {
-            try
-            {
-                int selectedGroupsCount = _selectedGroups.Count(kv => kv.Value);
-                string groupsText = selectedGroupsCount == 4 ? "Все группы" : $"{selectedGroupsCount} групп";
-                double percentage = (_score * 100.0) / MaxQuestions;
 
-                string category = string.Join(",", _selectedGroups.Where(kv => kv.Value).Select(kv => kv.Key));
-                Leaderboard.AddResult(_currentUserName, _score, MaxQuestions, percentage, category, DateTime.Now);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении результата: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void BtnPause_Click(object sender, EventArgs e)
         {
@@ -383,21 +367,7 @@ namespace YourNamespace
             textBoxAnswer.Focus();
         }
 
-        private void BtnLeaderboard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FormLeaderboard leaderboardForm = new FormLeaderboard();
-                leaderboardForm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при открытии таблицы лидеров: {ex.Message}", "Ошибка",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void FormTestMorze_FormClosing(object sender, FormClosingEventArgs e)
+         private void FormTestMorze_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_questionsAsked < MaxQuestions && _questionsAsked > 0)
             {
